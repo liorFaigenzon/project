@@ -1,0 +1,87 @@
+﻿@using Exercise.Models;
+@model IEnumerable<QueueNodeViewModel>
+
+@using (Html.BeginForm("Create", "QueueNodeViewModels", FormMethod.Post))
+{
+    @Html.Partial("~/Views/QueueNodeViewModels/Create.cshtml", new QueueNodeViewModel())
+}
+
+
+@using (Html.BeginForm("Next", "QueueNodeViewModels", FormMethod.Post))
+{
+    <input type="submit" value="לקוח הבא" class="btn btn-default" />
+}
+
+@{
+    ViewBag.Title1 = "בבדיקה";
+    ViewBag.Title2 = "רשימת ממתינים";
+}
+@{ if (ViewBag.listGetService != null)
+{
+<h2>@ViewBag.Title1 </h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QueueNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in (List<QueueNodeViewModel>)ViewBag.listGetService)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QueueNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+        </tr>
+    }
+
+</table>
+    }
+}
+<h2>
+    @ViewBag.Title2
+</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QueueNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeStamp)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QueueNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeStamp)
+                    </td>
+                </tr>
+            }
+
+        </table>
